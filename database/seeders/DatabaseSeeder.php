@@ -19,9 +19,15 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        Divisi::create([
-            "nama" => "Front End"
-        ]);
+        $divisions = ["Front End", "Back End" , "Content" , "IT Support"];        
+
+        foreach ($divisions as $key => $value) {
+
+            Divisi::create([
+                "nama" => $value
+            ]);
+
+        }               
 
 
         User::factory()->create([

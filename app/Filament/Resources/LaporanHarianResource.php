@@ -44,8 +44,8 @@ class LaporanHarianResource extends Resource
                 Forms\Components\Select::make('status')
                     ->required()
                     ->options([
-                        "On Progress",
-                        "Selesai"
+                        "On Progress" => "On Progress",
+                        "Selesai" => "Selesai"
                     ])
                     ->default("Selesai"),
 
@@ -75,8 +75,7 @@ class LaporanHarianResource extends Resource
                     ->sortable(),
                 // Tables\Columns\TextColumn::make('file')
                 //     ->searchable(),
-                Tables\Columns\TextColumn::make('status')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('status')                   
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

@@ -39,9 +39,11 @@ class UserResource extends Resource
                     ->password()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('divisi_id')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\Select::make('divisi_id')->relationship('divisi' , 'nama'),
+                Forms\Components\Select::make('level')->options([
+                    "User" => "User",
+                    "Manajer" => "Manajer",
+                ])->default("user"),
             ]);
     }
 
@@ -56,13 +58,12 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->toggleable(isToggledHiddenByDefault: true),             
+                    
                 Tables\Columns\TextColumn::make('divisi.nama')
                     ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('level')                 
                     ->sortable(),
             ])
             ->filters([
