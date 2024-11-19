@@ -10,4 +10,14 @@ class Tugas extends Model
 
     protected $guarded = [];
 
+    public function kategori(){
+
+        return $this->belongsTo(Kategori::class, 'kategori_id');
+    }
+
+    public function divisi(){
+
+        return $this->belongsTo(Divisi::class, 'divisi_id');
+    }
+
 }

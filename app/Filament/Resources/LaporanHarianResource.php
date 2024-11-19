@@ -17,7 +17,7 @@ class LaporanHarianResource extends Resource
 {
     protected static ?string $model = LaporanHarian::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
 
     protected static ?string $navigationLabel = "Laporan Harian";
     protected static ?string $slug = "laporan";
@@ -64,20 +64,20 @@ class LaporanHarianResource extends Resource
                 Tables\Columns\TextColumn::make('tanggal')
                     ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('tugas_id')
+                Tables\Columns\TextColumn::make('tugas.judul')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('user_id')
+                Tables\Columns\TextColumn::make('user.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('divisi_id')
+                Tables\Columns\TextColumn::make('divisi.nama')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('kategori_id')
+                Tables\Columns\TextColumn::make('kategori.title')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('file')
-                    ->searchable(),
+                // Tables\Columns\TextColumn::make('file')
+                //     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
                     ->numeric()
                     ->sortable(),
@@ -95,10 +95,11 @@ class LaporanHarianResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ReplicateAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    
                 ]),
             ]);
     }

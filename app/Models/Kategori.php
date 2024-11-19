@@ -10,4 +10,14 @@ class Kategori extends Model
 
     protected $guarded = [];
 
+    public function tugas(){
+
+        return $this->hasMany(Tugas::class, 'kategori_id');
+    }
+
+    public function laporan_harian(){
+
+        return $this->hasMany(LaporanHarian::class, 'kategori_id');
+    }
+
 }

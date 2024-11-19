@@ -17,7 +17,7 @@ class TugasResource extends Resource
 {
     protected static ?string $model = Tugas::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-check';
 
     protected static ?string $navigationLabel = "Tugas";
     protected static ?string $slug = "tugas";
@@ -70,7 +70,7 @@ class TugasResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                   
                 ]),
             ]);
     }
