@@ -27,31 +27,28 @@ class LaporanHarianResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('judul')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\DatePicker::make('tanggal')
+                Forms\Components\Select::make('tugas_id')->relationship('tugas' , 'judul')->searchable()->preload()->required(),
+                Forms\Components\TextInput::make('judul')->required()->maxLength(255),
+                Forms\Components\DatePicker::make('tanggal')->default(now())
                     ->required(),
-                Forms\Components\TextInput::make('tugas_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('user_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('divisi_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('kategori_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('file')
-                    ->maxLength(255)
-                    ->default(null),
+                
+                Forms\Components\Select::make('user_id')->relationship('user', 'name')->default(auth()->user()->id)
+                    ->required(),
+                Forms\Components\Select::make('divisi_id')->relationship('divisi' , 'nama')->default( auth()->user()->divisi_id )
+                    ->required(),
+                Forms\Components\Select::make('kategori_id')->relationship('kategori' , 'title')
+                    ->required(),                
                 Forms\Components\Textarea::make('deskripsi')
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('status')
+                Forms\Components\FileUpload::make('file'),
+                Forms\Components\Select::make('status')
                     ->required()
-                    ->numeric(),
+                    ->options([
+                        "On Progress",
+                        "Selesai"
+                    ])
+                    ->default("Selesai"),
+
             ]);
     }
 

@@ -47,10 +47,10 @@ class TugasResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('judul')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('kategori_id')
+                Tables\Columns\TextColumn::make('kategori.title')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('divisi_id')
+                Tables\Columns\TextColumn::make('divisi.nama')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')

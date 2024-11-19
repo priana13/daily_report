@@ -21,7 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'divisi_id'
+        'divisi_id',
+        'level'
     ];
 
     /**

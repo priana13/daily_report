@@ -2,9 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Divisi;
+use App\Models\Kategori;
+use App\Models\Tugas;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,9 +19,30 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        Divisi::create([
+            "nama" => "Front End"
         ]);
+
+
+        User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@example.com',
+            'level' => "Manajer",
+            'divisi_id' => 1,
+            'password' => Hash::make('password')
+        ]);
+
+      
+        Kategori::create([
+            "title" => "Backup"
+        ]);       
+
+        Tugas::create([
+
+            "judul" => "Tugas Harian",
+            "kategori_id" => 1,
+            "divisi_id" => 1
+        ]);
+
     }
 }

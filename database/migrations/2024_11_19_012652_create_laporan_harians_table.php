@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('kategori_id');
             $table->string('file')->nullable();
             $table->text('deskripsi')->nullable();
-            $table->integer('status');
+            $table->string('status')->default("Selesai"); // Sekarang , Selesai
             $table->timestamps();
         });
     }
