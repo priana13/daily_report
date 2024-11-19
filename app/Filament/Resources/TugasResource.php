@@ -19,6 +19,10 @@ class TugasResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationLabel = "Tugas";
+    protected static ?string $slug = "tugas";
+    protected static ?string $breadcrumb = "Tugas";
+
     public static function form(Form $form): Form
     {
         return $form

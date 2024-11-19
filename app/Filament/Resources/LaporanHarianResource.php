@@ -19,6 +19,10 @@ class LaporanHarianResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationLabel = "Laporan Harian";
+    protected static ?string $slug = "laporan";
+    protected static ?string $breadcrumb = "Laporan";
+
     public static function form(Form $form): Form
     {
         return $form

@@ -19,6 +19,10 @@ class DivisiResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationLabel = "Divisi";
+    protected static ?string $slug = "divisi";
+    protected static ?string $breadcrumb = "Divisi";
+
     public static function form(Form $form): Form
     {
         return $form
