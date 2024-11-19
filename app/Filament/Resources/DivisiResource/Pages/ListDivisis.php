@@ -10,6 +10,8 @@ class ListDivisis extends ListRecords
 {
     protected static string $resource = DivisiResource::class;
 
+    protected static ?string $title = "Divisi";
+
     protected function getHeaderActions(): array
     {
         return [

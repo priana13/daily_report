@@ -10,6 +10,8 @@ class ListKategoris extends ListRecords
 {
     protected static string $resource = KategoriResource::class;
 
+    protected static ?string $title = "Kategori";
+
     protected function getHeaderActions(): array
     {
         return [
