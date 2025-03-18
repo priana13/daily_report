@@ -27,18 +27,25 @@ class LaporanHarianResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('judul')->required()->maxLength(255)->columnSpanFull(),
                 Forms\Components\Select::make('tugas_id')->relationship('tugas' , 'judul')->searchable()->preload()->required(),
-                Forms\Components\TextInput::make('judul')->required()->maxLength(255),
                 Forms\Components\DatePicker::make('tanggal')->default(now())
                     ->required(),
                 
-                Forms\Components\Select::make('user_id')->relationship('user', 'name')->default(auth()->user()->id)
-                    ->required(),
-                Forms\Components\Select::make('divisi_id')->relationship('divisi' , 'nama')->default( auth()->user()->divisi_id )
-                    ->required(),
+                // Forms\Components\Select::make('user_id')->relationship('user', 'name')->default(auth()->user()->id)
+                //     ->required(),
+                // Forms\Components\Select::make('divisi_id')->relationship('divisi' , 'nama')->default( auth()->user()->divisi_id )
+                //     ->required(),
                 Forms\Components\Select::make('kategori_id')->relationship('kategori' , 'title')
+                    ->createOptionForm([
+                        Forms\Components\TextInput::make('title')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\Textarea::make('description')
+                            ->columnSpanFull(),
+                    ])
                     ->required(),                
-                Forms\Components\Textarea::make('deskripsi')
+                Forms\Components\RichEditor::make('deskripsi')
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('file'),
                 Forms\Components\Select::make('status')

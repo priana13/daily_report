@@ -32,12 +32,10 @@ class TugasResource extends Resource
                     ->maxLength(255),
                 Forms\Components\Textarea::make('deskripsi')
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('kategori_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('divisi_id')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\Select::make('kategori_id')->relationship('kategori' , 'title')
+                    ->required(),
+                Forms\Components\Select::make('divisi_id')->relationship('divisi' , 'nama')
+                    ->required(),
             ]);
     }
 

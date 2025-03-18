@@ -23,6 +23,9 @@ class KategoriResource extends Resource
     protected static ?string $slug = "kategori";
     protected static ?string $breadcrumb = "Kategori";
 
+    protected static bool $shouldRegisterNavigation = false;
+
+
     public static function form(Form $form): Form
     {
         return $form
