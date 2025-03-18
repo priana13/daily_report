@@ -9,6 +9,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -34,6 +35,7 @@ class LaporanHarianResource extends Resource
                 
                 // Forms\Components\Select::make('user_id')->relationship('user', 'name')->default(auth()->user()->id)
                 //     ->required(),
+
                 // Forms\Components\Select::make('divisi_id')->relationship('divisi' , 'nama')->default( auth()->user()->divisi_id )
                 //     ->required(),
                 Forms\Components\Select::make('kategori_id')->relationship('kategori' , 'title')
@@ -62,44 +64,39 @@ class LaporanHarianResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(function (Builder $query) {
+
+                if (auth()->user()->level != "Manajer") {
+
+                    $query->where('user_id' , auth()->id());
+
+                }
+
+                return $query;
+
+            })
             ->columns([
-                Tables\Columns\TextColumn::make('judul')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('tanggal')
-                    ->date()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('tugas.judul')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('user.name')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('divisi.nama')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('kategori.title')
-                    ->numeric()
-                    ->sortable(),
-                // Tables\Columns\TextColumn::make('file')
-                //     ->searchable(),
-                Tables\Columns\TextColumn::make('status')                   
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('judul')->searchable(),
+                Tables\Columns\TextColumn::make('kategori.title')->sortable(),           
+                Tables\Columns\TextColumn::make('tanggal')->date()->sortable(),
+                Tables\Columns\TextColumn::make('tugas.judul')->sortable(),
+                Tables\Columns\TextColumn::make('user.name')->visible(fn () => auth()->user()->level == "Manajer")->sortable(),
+                Tables\Columns\TextColumn::make('divisi.nama')->sortable(),
+                Tables\Columns\BadgeColumn::make('status')->colors([
+                    'On Progress' => 'yellow',
+                    'Selesai' => 'green',
+                ])->sortable(),
+                Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('kategori_id')->relationship('kategori', 'title')->label('Kategori')->searchable()->preload(),
+                SelectFilter::make('tugas_id')->relationship('tugas', 'judul')->label('Tugas')->searchable()->preload(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()->hiddenLabel(),
+                Tables\Actions\DeleteAction::make()->hiddenLabel(),
                 // Tables\Actions\Action::make("show")->url(fn (LaporanHarian $record) => route('filament.admin.resources.laporan.show', $record)),
-                Tables\Actions\ReplicateAction::make(),
+                Tables\Actions\ReplicateAction::make()->hiddenLabel(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -124,4 +121,7 @@ class LaporanHarianResource extends Resource
             // 'edit' => Pages\EditLaporanHarian::route('/{record}/edit'),
         ];
     }
+
+
+
 }

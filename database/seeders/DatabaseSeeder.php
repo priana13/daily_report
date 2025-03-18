@@ -38,6 +38,15 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password')
         ]);
 
+        User::factory()->create([
+            'name' => 'Staf',
+            'email' => 'staff@example.com',
+            'level' => "User",
+            'divisi_id' => 1,
+            'password' => Hash::make('password')
+        ]);
+
+
       
         Kategori::create([
             "title" => "Backup"

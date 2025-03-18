@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('judul');
             $table->date('tanggal');
             $table->unsignedBigInteger('tugas_id');
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('divisi_id');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('divisi_id')->nullable();
             $table->unsignedBigInteger('kategori_id');
             $table->string('file')->nullable();
             $table->text('deskripsi')->nullable();
