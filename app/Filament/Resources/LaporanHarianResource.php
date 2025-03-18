@@ -98,6 +98,7 @@ class LaporanHarianResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                // Tables\Actions\Action::make("show")->url(fn (LaporanHarian $record) => route('filament.admin.resources.laporan.show', $record)),
                 Tables\Actions\ReplicateAction::make(),
             ])
             ->bulkActions([
@@ -118,6 +119,7 @@ class LaporanHarianResource extends Resource
     {
         return [
             'index' => Pages\ListLaporanHarians::route('/'),
+            'show' => Pages\ShowLaporanHarian::route('/{record}'),
             // 'create' => Pages\CreateLaporanHarian::route('/create'),
             // 'edit' => Pages\EditLaporanHarian::route('/{record}/edit'),
         ];
