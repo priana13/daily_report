@@ -30,7 +30,7 @@ class TugasResource extends Resource
                 Forms\Components\TextInput::make('judul')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Textarea::make('deskripsi')
+                Forms\Components\RichEditor::make('deskripsi')
                     ->columnSpanFull(),
                 Forms\Components\Select::make('kategori_id')->relationship('kategori' , 'title')
                     ->createOptionForm([
@@ -40,8 +40,11 @@ class TugasResource extends Resource
                         Forms\Components\Textarea::make('description')
                             ->columnSpanFull(),
                     ])
-                    ->required(),
+                    ->required()
+                    ->searchable()
+                    ->preload(),
                 Forms\Components\Select::make('divisi_id')->relationship('divisi' , 'nama')
+                    ->visible(auth()->user()->level == "Manajer")
                     ->required(),
             ]);
     }
@@ -49,6 +52,15 @@ class TugasResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(function (Builder $query) {
+
+                if (auth()->user()->level != "Manajer") {
+
+                    $query->where('divisi_id' , auth()->user()->divisi_id);
+
+                }
+                return $query;
+            })
             ->columns([
                 Tables\Columns\TextColumn::make('judul')
                     ->searchable(),

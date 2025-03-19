@@ -15,7 +15,17 @@ class ListTugas extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make()->label("Input Baru"),
+            Actions\CreateAction::make()->label("Input Baru")
+            ->mutateFormDataUsing(function ($data) {
+
+                if(auth()->user()->level != "Manajer"){
+
+                    $data['divisi_id'] = auth()->user()->divisi_id;
+                } 
+
+                return $data;
+
+            }),
         ];
     }
 }
