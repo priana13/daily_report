@@ -70,37 +70,77 @@
 
             <tr class="border-b border-neutral-200 dark:border-white/10">
               <td class="whitespace-nowrap  px-6 py-4 font-medium">
-                <input type="text" id="first_name" class="border-0 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ketik Tugas" required autocomplete="off" />
+                {{-- <input type="text" wire:model="judul" id="judul" class="border-0 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ketik Tugas" required autocomplete="off" />
+                
+                @error('judul') <span class="text-red-500">{{ $message }}</span> @enderror --}}
+
+                <select wire:model="tugas" id="kategori" class="border-0 border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <option selected>Tugas</option>
+
+                  @foreach($list_tugas as $tugas)
+
+                    <option value="{{ $tugas->id }}">{{ $tugas->judul }}</option>
+
+                  @endforeach                 
+
+                </select>
+
+                @error('tugas') <span class="text-red-500">{{ $message }}</span> @enderror
+
+
+
               </td>
               <td class="whitespace-nowrap  px-6 py-4 text-center">
-                <select id="countries" class="border-0 border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select wire:model="kategori" id="kategori" class="border-0 border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                   <option selected>Kategori</option>
 
                   @foreach($list_kategori as $kategori)
 
                     <option value="{{ $kategori->id }}">{{ $kategori->title }}</option>
 
-                  @endforeach
-                 
+                  @endforeach                 
 
                 </select>
+
+                @error('kategori') <span class="text-red-500">{{ $message }}</span> @enderror
+
               </td>
               <td class="whitespace-nowrap  px-6 py-4 text-center">
-                <select id="countries" class="border-0 border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select wire:model="status" id="status" class="border-0 border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                   <option selected>Status</option>
-                  <option value="US">Selesai</option>
-                  <option value="CA">Progress</option>   
-                  <option value="CA">Next</option>                
+                  <option value="Selesai">Selesai</option>
+                  <option value="Progress">Progress</option>   
+                  <option value="Next">Next</option>                
                 </select>
+
+                @error('status') <span class="text-red-500">{{ $message }}</span> @enderror
+
               </td>
               <td class="whitespace-nowrap  px-6 py-4">
                 {{-- <input type="text" id="first_name" class="border-0 border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Catatan" required autocomplete="off" /> --}}
 
-                <textarea rows="1" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border-0 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Catatan..."></textarea>
+                <textarea wire:model="deskripsi"                  
+                rows="1" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border-0 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Catatan..."></textarea>
 
+                @error('deskripsi') <span class="text-red-500">{{ $message }}</span> @enderror
 
               </td>
             </tr>
+
+            <tr class="border-b border-neutral-200 dark:border-white/10">
+
+              <td class="whitespace-nowrap  px-6 py-4 font-medium text-center" colspan="4">
+
+                <button
+                    type="button"
+                    wire:click="saveData"
+                    class="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-success-3 transition duration-150 ease-in-out hover:bg-success-accent-300 hover:shadow-success-2 focus:bg-success-accent-300 focus:shadow-success-2 focus:outline-none focus:ring-0 active:bg-success-600 active:shadow-success-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong">
+                    Simpan
+                </button>
+
+              </td>
+
+            </tr>    
 
 
 

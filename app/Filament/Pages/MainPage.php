@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Models\Kategori;
 use App\Models\LaporanHarian;
+use App\Models\Tugas;
 use Filament\Pages\Page;
 
 class MainPage extends Page
@@ -16,6 +17,14 @@ class MainPage extends Page
 
     public $tanggal;
 
+    public string $tugas;
+
+    public int $kategori;
+
+    public string $status;
+
+    public ?string $deskripsi;
+
     public function mount(){
 
         $this->tanggal = date('Y-m-d');
@@ -26,11 +35,18 @@ class MainPage extends Page
      */
     protected function getViewData(): array
     {
-        $data_laporan = LaporanHarian::whereDate('created_at' , $this->tanggal)->get();     
+        $data_laporan = LaporanHarian::whereDate('created_at' , $this->tanggal)->get();  
+        
+        $list_tugas = Tugas::query();
+
+        if (auth()->user()->level != "Manajer") {
+            $list_tugas->where('divisi_id' , auth()->user()->divisi_id);
+        }
 
         return [
             'data_laporan' => $data_laporan,
-            'list_kategori' => Kategori::all()
+            'list_kategori' => Kategori::all(),
+            'list_tugas' => $list_tugas->get(),
         ];
         
     }
@@ -43,6 +59,31 @@ class MainPage extends Page
     public function today(){
 
         $this->tanggal = date('Y-m-d');
+    }
+
+    public function saveData(){
+
+        $this->validate([
+            'tugas' => 'required',
+            'kategori' => 'required',
+            'status' => 'required',
+            'deskripsi' => 'required'
+        ]);
+
+        $tugas = Tugas::find($this->tugas);   
+
+        $laporan = LaporanHarian::create([
+                    'tugas_id' => $this->tugas,
+                    'judul' => $tugas->judul,
+                    'kategori_id' => $this->kategori,
+                    'status' => $this->status,
+                    'deskripsi' => $this->deskripsi,
+                    'tanggal' => now()
+                ]);
+
+        $this->reset(['tugas', 'kategori', 'status', 'deskripsi']);
+
+       
     }
 
 }
