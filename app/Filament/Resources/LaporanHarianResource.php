@@ -24,6 +24,8 @@ class LaporanHarianResource extends Resource
     protected static ?string $slug = "laporan";
     protected static ?string $breadcrumb = "Laporan";
 
+    protected static bool $shouldRegisterNavigation = false;
+
     public static function form(Form $form): Form
     {
         return $form
