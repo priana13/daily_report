@@ -86,4 +86,11 @@ class MainPage extends Page
        
     }
 
+    public function deleteData($id){
+
+        $laporan = LaporanHarian::find($id);
+
+        $laporan->delete();
+    }
+
 }
