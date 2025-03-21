@@ -18,7 +18,7 @@ class MainPage extends Page
 
     public function mount(){
 
-        $this->tanggal = date('d M Y');
+        $this->tanggal = date('Y-m-d');
     }
 
     /**
@@ -26,7 +26,7 @@ class MainPage extends Page
      */
     protected function getViewData(): array
     {
-        $data_laporan = LaporanHarian::take(3)->get();     
+        $data_laporan = LaporanHarian::whereDate('created_at' , $this->tanggal)->get();     
 
         return [
             'data_laporan' => $data_laporan,
@@ -37,12 +37,12 @@ class MainPage extends Page
 
     public function prevDate(){
 
-        $this->tanggal = date('d M Y', strtotime($this->tanggal . ' -1 day'));
+        $this->tanggal = date('Y-m-d', strtotime($this->tanggal . ' -1 day'));
     }
 
     public function today(){
 
-        $this->tanggal = date('d M Y');
+        $this->tanggal = date('Y-m-d');
     }
 
 }

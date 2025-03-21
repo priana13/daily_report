@@ -25,7 +25,7 @@
         </button>
     </div>
 
-    <h2 class="text-xl">Tanggal : <strong>{{ $tanggal }}</strong> </h2>
+    <h2 class="text-xl">Tanggal : <strong>{{ date('d M Y' , strtotime($tanggal)) }}</strong> </h2>
     
 </div>
 
