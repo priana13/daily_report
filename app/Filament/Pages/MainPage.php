@@ -25,9 +25,9 @@ class MainPage extends Page
 
     public ?string $deskripsi;
 
-    public function mount(){
+    public function mount(){       
 
-        $this->tanggal = date('Y-m-d');
+        $this->tanggal = (request()->has('tanggal') ) ? request('tanggal') : date('Y-m-d');
     }
 
     /**
@@ -35,7 +35,7 @@ class MainPage extends Page
      */
     protected function getViewData(): array
     {
-        $data_laporan = LaporanHarian::whereDate('created_at' , $this->tanggal)->get();  
+         $data_laporan = LaporanHarian::whereDate('tanggal' , $this->tanggal)->get();  
         
         $list_tugas = Tugas::query();
 
@@ -73,12 +73,13 @@ class MainPage extends Page
         $tugas = Tugas::find($this->tugas);   
 
         $laporan = LaporanHarian::create([
+                    'user_id' => auth()->user()->id,
                     'tugas_id' => $this->tugas,
                     'judul' => $tugas->judul,
                     'kategori_id' => $this->kategori,
                     'status' => $this->status,
                     'deskripsi' => $this->deskripsi,
-                    'tanggal' => now()
+                    'tanggal' => $this->tanggal
                 ]);
 
         $this->reset(['tugas', 'kategori', 'status', 'deskripsi']);
