@@ -53,15 +53,34 @@
 
             // dd($hari_ini);
             $is_minggu = $hari_ini == 7;
+
+
+            if (isset( $data_laporan[$tgl] )){
+                $warna = 'bg-success-300';
+                $act = $data_laporan[$tgl];
+
+            }else{
+
+                $warna = 'bg-primary-100';
+                $act = 0;
+            }
+
+
+
         @endphp
 
 
         <button
             type="button"
-            class="inline-block rounded {{ $hari_ini == 7 ? 'bg-danger text-white' : 'bg-primary-100' }} px-6 py-4 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:bg-primary-accent-200 focus:bg-primary-accent-200 focus:outline-none focus:ring-0 active:bg-primary-accent-200 motion-reduce:transition-none dark:bg-primary-300 dark:hover:bg-primary-400 dark:focus:bg-primary-400 dark:active:bg-primary-400">
-            {{ $tgl }} (5)
+            class="inline-block rounded {{ $hari_ini == 7 ? 'bg-danger-300' : $warna }} px-6 py-4 font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out  focus:bg-primary-accent-200 focus:outline-none focus:ring-0 motion-reduce:transition-none dark:bg-primary-300 dark:focus:bg-primary-400 relative">
+            <span class="absolute top-2 left-2 text-gray-400 text-xs">{{ $tgl }}</span>
+            <span>{{ $act }}</span>
+
+             
         </button>
     @endfor
 </div>
+
+<livewire:timeline-activity />
 
 </x-filament-panels::page>
