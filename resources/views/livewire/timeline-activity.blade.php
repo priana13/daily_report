@@ -2,16 +2,16 @@
 
     <h3
   class="mb-6 ms-3 text-2xl font-bold text-neutral-700 dark:text-neutral-300">
-  Latest News
+  Aktivitas Terbaru
 </h3>
 
-<ol class="border-s-2 border-info-100">
+<ol class="border-s-2 border-info-100 ms-8">
   <!--First item-->
 
   @foreach ($activities as $row)
 
       
-  <li>
+  <li class="">
     <div class="flex-start md:flex">
       <div
         class="-ms-[13px] flex h-[25px] w-[25px] items-center justify-center rounded-full bg-info-100 text-info-700">
@@ -27,15 +27,15 @@
         </svg>
       </div>
       <div
-        class="mb-10 ms-6 block max-w-md rounded-lg bg-neutral-50 p-6 shadow-md shadow-black/5 dark:bg-neutral-700 dark:shadow-black/10">
-        <div class="mb-4 flex justify-between">
+        class="mb-10 ms-6 block w-[60%] rounded-tr-lg p-6 dark:bg-neutral-700 dark:shadow-black/10">
+        <div class="mb-4">
           <a
-            href="#!"
-            class="text-sm text-info transition duration-150 ease-in-out hover:text-info-600 focus:text-info-600 active:text-info-700"
+            href="/member/main-page?tanggal={{ $row->tanggal }}"
+            class="text-sm text-info transition duration-150 ease-in-out hover:text-info-600 focus:text-info-600 active:text-info-700 "
             >{{ $row->judul }}</a
-          >
+          > <br>
           <a
-            href="#!"
+            href="/member/main-page?tanggal={{ $row->tanggal }}"
             class="text-sm text-info transition duration-150 ease-in-out hover:text-info-600 focus:text-info-600 active:text-info-700"
             >{{ date('d M Y' , strtotime($row->tanggal)) }}</a
           >
@@ -44,14 +44,15 @@
 
         {!! $row->deskripsi !!}
 
+        <br> <br>
 
-        <button
-          type="button"
-          class="mt-6 "
+        <a
+          href="/member/main-page?tanggal={{ $row->tanggal }}"
+          class="mt-6 text-primary"
           data-twe-ripple-init
           data-twe-ripple-color="light">
           Lihat
-        </button>
+      </a>
       
       </div>
     </div>

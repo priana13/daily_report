@@ -25,9 +25,9 @@ class MainPage extends Page
 
     public ?string $deskripsi;
 
-    public function mount(){
+    public function mount(){       
 
-        $this->tanggal = date('Y-m-d');
+        $this->tanggal = (request()->has('tanggal') ) ? request('tanggal') : date('Y-m-d');
     }
 
     /**
@@ -73,6 +73,7 @@ class MainPage extends Page
         $tugas = Tugas::find($this->tugas);   
 
         $laporan = LaporanHarian::create([
+                    'user_id' => auth()->user()->id,
                     'tugas_id' => $this->tugas,
                     'judul' => $tugas->judul,
                     'kategori_id' => $this->kategori,

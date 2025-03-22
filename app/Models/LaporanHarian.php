@@ -33,4 +33,9 @@ class LaporanHarian extends Model
         return $this->belongsTo(Tugas::class , 'tugas_id');
     }
 
+    public function scopeMine($query){
+
+        return $query->where('user_id' , auth()->user()->id);
+    }
+
 }
