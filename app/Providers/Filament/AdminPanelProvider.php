@@ -28,6 +28,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('member')   
+            ->favicon(asset('img/icon.png'))
             ->login()            
             ->registration(Register::class)
             ->passwordReset()

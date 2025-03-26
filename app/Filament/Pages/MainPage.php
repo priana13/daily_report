@@ -23,7 +23,11 @@ class MainPage extends Page
 
     public string $status;
 
-    public ?string $deskripsi;
+    public ?string $deskripsi = '';
+
+    public $selectedRecord;
+
+    protected $listeners = ['refreshParent' => '$refresh'];
 
     public function mount(){       
 
@@ -66,11 +70,15 @@ class MainPage extends Page
         $this->validate([
             'tugas' => 'required',
             'kategori' => 'required',
-            'status' => 'required',
-            'deskripsi' => 'required'
+            'status' => 'required',            
+        ],[
+            'tugas.required' => 'Tugas belum dipilih',
+            'kategori.required' => 'Kategori belum dipilih',
+            'status.required' => 'Status belum dipilih',
         ]);
 
-        $tugas = Tugas::find($this->tugas);   
+        $tugas = Tugas::find($this->tugas);  
+    
 
         $laporan = LaporanHarian::create([
                     'user_id' => auth()->user()->id,
@@ -85,6 +93,16 @@ class MainPage extends Page
         $this->reset(['tugas', 'kategori', 'status', 'deskripsi']);
 
        
+    }
+
+    public function editData($id){
+
+        $this->selectedRecord = LaporanHarian::find($id);
+
+        $this->tugas = $this->selectedRecord->tugas_id;
+        $this->kategori = $this->selectedRecord->kategori_id;
+        $this->status = $this->selectedRecord->status;
+        $this->deskripsi = $this->selectedRecord->deskripsi;
     }
 
     public function deleteData($id){
