@@ -15,6 +15,8 @@ class AllActivites extends Page
 
     protected static bool $shouldRegisterNavigation = true;
 
+    protected static ?string $title = 'Semua Tugas';
+
     public $tanggal;
 
     public function mount(){

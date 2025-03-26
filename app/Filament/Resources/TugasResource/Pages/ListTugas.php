@@ -10,7 +10,7 @@ class ListTugas extends ListRecords
 {
     protected static string $resource = TugasResource::class;
 
-    protected static ?string $title = "Tugas";
+    protected static ?string $title = "Tugas Saya";
 
     protected function getHeaderActions(): array
     {

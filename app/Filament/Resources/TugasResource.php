@@ -19,7 +19,7 @@ class TugasResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document-check';
 
-    protected static ?string $navigationLabel = "Tugas";
+    protected static ?string $navigationLabel = "Tugas Saya";
     protected static ?string $slug = "tugas";
     protected static ?string $breadcrumb = "Tugas";
 

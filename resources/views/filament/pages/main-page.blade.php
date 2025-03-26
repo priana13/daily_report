@@ -93,25 +93,23 @@
 
 
             <tr class="border-b border-neutral-200 dark:border-white/10">
-              <td class="whitespace-nowrap  px-6 py-4 font-medium">
-                {{-- <input type="text" wire:model="judul" id="judul" class="border-0 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ketik Tugas" required autocomplete="off" />
-                
-                @error('judul') <span class="text-red-500">{{ $message }}</span> @enderror --}}
+              <td class="whitespace-nowrap  px-6 py-4 font-medium flex">
+              
+             
 
-                <select wire:model="tugas" id="kategori" class="border-0 border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                  <option selected>Tugas</option>
+                  <select wire:model="tugas" id="kategori" class="border-0 border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected>Pilih Tugas</option>
+  
+                    @foreach($list_tugas as $tugas)
+  
+                      <option value="{{ $tugas->id }}">{{ $tugas->judul }}</option>
+  
+                    @endforeach   
+                  </select>
 
-                  @foreach($list_tugas as $tugas)
+                  @error('tugas') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                    <option value="{{ $tugas->id }}">{{ $tugas->judul }}</option>
-
-                  @endforeach                 
-
-                </select>
-
-                @error('tugas') <span class="text-red-500">{{ $message }}</span> @enderror
-
-
+              
 
               </td>
               <td class="whitespace-nowrap  px-6 py-4 text-center">

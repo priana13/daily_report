@@ -13,7 +13,7 @@ class MainPage extends Page
 
     protected static string $view = 'filament.pages.main-page';
 
-    protected static ?string $title = 'Tugas Hari Ini';
+    protected static ?string $title = 'Input Tugas';
 
     public $tanggal;
 
