@@ -41,18 +41,15 @@
           >
         </div>
 
+        @foreach( $this->getListItem($row->tanggal) as $item)
 
-        {!! $row->deskripsi !!}
+        <div>
 
-        <br> <br>
+         {{ $loop->iteration }}. {!! $item->tugas->judul !!} - {{ $item->deskripsi }}
 
-        <a
-          href="/member/main-page?tanggal={{ $row->tanggal }}"
-          class="mt-6 text-primary"
-          data-twe-ripple-init
-          data-twe-ripple-color="light">
-          Lihat
-      </a>
+        </div>
+
+        @endforeach
       
       </div>
     </div>
