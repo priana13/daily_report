@@ -38,33 +38,42 @@
           <table
             class="min-w-full text-sm font-light text-surface dark:text-white">
             <thead
-              class="border-b border-neutral-200 bg-primary-100 font-medium dark:border-white/10">
+              class="border-b border-neutral-200 bg-primary-200 font-medium dark:border-white/10">
               <tr>
-                <th scope="col" class=" px-6 py-4 text-left">Tugas</th>
-                <th scope="col" class=" px-6 py-4">Kategori</th>
-                <th scope="col" class=" px-6 py-4">Status</th>
-                <th scope="col" class=" px-6 py-4 text-left">Catatan</th>
-                <th scope="col" class=" px-6 py-4 text-left"></th>
+                <th scope="col" class=" px-6 py-4 text-left border-r-2 border-white">Tugas</th>
+                <th scope="col" class=" px-6 py-4 border-r-2 border-white">Kategori</th>
+                <th scope="col" class=" px-6 py-4 border-r-2 border-white">Status</th>
+                <th scope="col" class=" px-6 py-4 text-left border-r-2 border-white">Catatan</th>
+                <th scope="col" class=" px-6 py-4 text-left border-r-2 border-white"></th>
               </tr>
             </thead>
             <tbody>
 
             @foreach($data_laporan as $laporan)
 
-              <tr class="border-b border-neutral-200 dark:border-white/10">
-                <td class="whitespace-nowrap  px-6 py-4 font-medium">
+               @php 
+
+               $warna = ($laporan->status == 'Selesai') ? 'green' : 'yellow';
+
+               @endphp
+
+              <tr class="border-b-2 border-r-2 border-white dark:border-white/10">
+                <td class="whitespace-nowrap  px-6 py-2 font-medium bg-blue-50">
                   {{ $loop->iteration }}.  {{ $laporan->judul }}
                 </td>
-                <td class="whitespace-nowrap  px-6 py-4 text-center">
+                <td class="whitespace-nowrap  px-6 py-2 text-center bg-blue-50">
                     {{ $laporan->kategori->title }}
                 </td>
-                <td class="whitespace-nowrap  px-6 py-4 text-center">
+                <td class="whitespace-nowrap  px-6 py-2 text-center bg-blue-50">
+                  <span class="bg-{{ $warna }}-200 text-{{ $warna }}-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-{{ $warna }}-900 dark:text-{{ $warna }}-300">
                     {{ $laporan->status }}
+                  </span>
+                    
                 </td>
-                <td class="whitespace-nowrap  px-6 py-4">
+                <td class="whitespace-nowrap  px-6 py-2 bg-blue-50">
                     {!! $laporan->deskripsi !!}
                 </td>
-                <td class="whitespace-nowrap  px-6 py-4">
+                <td class="whitespace-nowrap  px-6 py-2 bg-blue-50">
                       
                   <button
                       type="button"
