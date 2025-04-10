@@ -87,7 +87,8 @@ class MainPage extends Page
                     'kategori_id' => $this->kategori,
                     'status' => $this->status,
                     'deskripsi' => $this->deskripsi,
-                    'tanggal' => $this->tanggal
+                    'tanggal' => $this->tanggal,
+                    'divisi_id' => auth()->user()->divisi_id,
                 ]);
 
         $this->reset(['tugas', 'kategori', 'status', 'deskripsi']);

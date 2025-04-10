@@ -107,4 +107,9 @@ class TugasResource extends Resource
             // 'edit' => Pages\EditTugas::route('/{record}/edit'),
         ];
     }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->orderby('id', 'desc');
+    }
 }

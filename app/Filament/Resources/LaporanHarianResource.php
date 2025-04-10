@@ -24,7 +24,7 @@ class LaporanHarianResource extends Resource
     protected static ?string $slug = "laporan";
     protected static ?string $breadcrumb = "Laporan";
 
-    protected static bool $shouldRegisterNavigation = false;
+    protected static bool $shouldRegisterNavigation = true;
 
     public static function form(Form $form): Form
     {
@@ -93,6 +93,8 @@ class LaporanHarianResource extends Resource
             ->filters([
                 SelectFilter::make('kategori_id')->relationship('kategori', 'title')->label('Kategori')->searchable()->preload(),
                 SelectFilter::make('tugas_id')->relationship('tugas', 'judul')->label('Tugas')->searchable()->preload(),
+                SelectFilter::make('divisi_id')->relationship('divisi', 'nama')->label('Divisi')->searchable()->preload(),
+                SelectFilter::make('user_id')->relationship('user', 'name')->label('User')->searchable()->preload(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make()->hiddenLabel(),
@@ -124,6 +126,11 @@ class LaporanHarianResource extends Resource
         ];
     }
 
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->orderby('tanggal', 'desc');
+    }
 
 
 }
