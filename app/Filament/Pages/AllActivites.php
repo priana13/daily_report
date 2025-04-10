@@ -15,7 +15,7 @@ class AllActivites extends Page
 
     protected static bool $shouldRegisterNavigation = true;
 
-    protected static ?string $title = 'Semua Tugas';
+    protected static ?string $title = 'Kalender';
 
     public $tanggal;
 

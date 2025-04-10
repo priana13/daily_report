@@ -37,6 +37,11 @@ class User extends Authenticatable implements FilamentUser
         'remember_token',
     ];
 
+    public function canImpersonate()
+    {
+        return true;
+    }    
+
     /**
      * Get the attributes that should be cast.
      *

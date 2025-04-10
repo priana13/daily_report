@@ -21,7 +21,9 @@ class LaporanHarianResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
 
     protected static ?string $navigationLabel = "Laporan Harian";
+
     protected static ?string $slug = "laporan";
+    
     protected static ?string $breadcrumb = "Laporan";
 
     protected static bool $shouldRegisterNavigation = true;
