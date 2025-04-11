@@ -72,6 +72,7 @@
           
         <button
             type="button"
+            wire:confirm="Kamu yakin ingin menghapus data ini?"
             wire:click="deleteData({{ $laporan->id }})"
             class="inline-block rounded text-danger px-2 py-1 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out focus:bg-danger-accent-300 focus:shadow-danger-2 focus:outline-none focus:ring-0 motion-reduce:transition-none dark:shadow-black/30 dark:focus:shadow-dark-strong dark:active:shadow-dark-strong">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 text-danger-800">
