@@ -14,15 +14,9 @@ class ListLaporanHarians extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        return [
-            Actions\CreateAction::make()->label("Input Baru")
-            ->after(function ($record) {
+        return [     
 
-                $record->user_id = auth()->id();
-                $record->divisi_id = auth()->user()->divisi_id;
-                $record->save();
-
-            }),
+            Actions\Action::make('Grafik')->color('success')->icon('heroicon-o-chart-bar')->url(route('filament.admin.pages.grafik-tugas'))
         ];
     }
 }
