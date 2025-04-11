@@ -46,6 +46,7 @@ class MainPage extends Page
         if (auth()->user()->level != "Manajer") {
             $list_tugas->where('divisi_id' , auth()->user()->divisi_id);
         }
+  
 
         return [
             'data_laporan' => $data_laporan,
@@ -53,6 +54,15 @@ class MainPage extends Page
             'list_tugas' => $list_tugas->get(),
         ];
         
+    }
+
+    public function getKategori(){
+
+        $tugas = Tugas::find($this->tugas);
+
+        $this->kategori = $tugas->kategori_id; 
+        
+        $this->status = "Selesai";
     }
 
     public function prevDate(){

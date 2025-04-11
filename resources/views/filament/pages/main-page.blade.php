@@ -67,7 +67,9 @@
               
              
 
-                  <select wire:model="tugas" id="kategori" class="border-0 border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <select wire:model="tugas" 
+                    wire:change="getKategori"                  
+                    id="kategori" class="border-0 border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option selected>Pilih Tugas</option>
   
                     @foreach($list_tugas as $tugas)
