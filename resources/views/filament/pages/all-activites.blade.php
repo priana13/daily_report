@@ -24,18 +24,6 @@
     
 </div>
 
-@php
-    // Ambil tanggal hari ini
-    $bulan = now()->month;
-    $tahun = now()->year;
-
-    // Tentukan hari pertama bulan ini (1 = Senin, 7 = Minggu)
-    $hari_pertama = \Carbon\Carbon::create($tahun, $bulan, 1)->dayOfWeekIso; // ISO: Senin = 1, Minggu = 7
-
-    // Jumlah hari dalam bulan ini
-    $jumlah_hari = \Carbon\Carbon::create($tahun, $bulan, 1)->daysInMonth;
-@endphp
-
 
 
 <div class="grid grid-cols-7 gap-4 mt-4">

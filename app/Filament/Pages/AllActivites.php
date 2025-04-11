@@ -19,9 +19,19 @@ class AllActivites extends Page
 
     public $tanggal;
 
+    public $bulan; 
+
+    public $tahun;
+
+    public $hari_pertama;
+
+    public $jumlah_hari;
+
     public function mount(){
 
         $this->tanggal = (request()->has('tanggal') ) ? request('tanggal') : date('Y-m-d');
+
+
     }
 
     /**
@@ -29,6 +39,15 @@ class AllActivites extends Page
      */
     protected function getViewData(): array
     {
+
+        $this->bulan = date('m' , strtotime($this->tanggal) );
+        $this->tahun = date('Y' , strtotime($this->tanggal) );
+
+        // Tentukan hari pertama bulan ini (1 = Senin, 7 = Minggu)
+        $this->hari_pertama = \Carbon\Carbon::create($this->tahun, $this->bulan, 1)->dayOfWeekIso; // ISO: Senin = 1, Minggu = 7
+
+        // Jumlah hari dalam bulan ini
+        $this->jumlah_hari = \Carbon\Carbon::create($this->tahun, $this->bulan, 1)->daysInMonth;
 
 
         $data_laporan = LaporanHarian::select([
