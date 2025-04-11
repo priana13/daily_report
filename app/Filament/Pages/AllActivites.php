@@ -54,7 +54,7 @@ class AllActivites extends Page
             DB::raw('DAY(tanggal) as tanggal'),
             DB::raw('count(*) as jumlah')
         ])
-        // ->where('user_id', auth()->user()->id)
+        ->mine()
         ->whereMonth('tanggal', date('m' , strtotime($this->tanggal) ))
         ->whereYear('tanggal', date('Y' , strtotime($this->tanggal)))
         ->groupBy('tanggal')->pluck('jumlah', 'tanggal')->toArray();  

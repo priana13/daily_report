@@ -39,7 +39,7 @@ class MainPage extends Page
      */
     protected function getViewData(): array
     {
-         $data_laporan = LaporanHarian::whereDate('tanggal' , $this->tanggal)->get();  
+         $data_laporan = LaporanHarian::mine()->whereDate('tanggal' , $this->tanggal)->get();  
         
         $list_tugas = Tugas::query();
 
