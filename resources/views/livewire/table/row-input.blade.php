@@ -9,7 +9,7 @@
         <select wire:model="tugas"
           x-show="isEdit"
         
-        class="border-0 border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        class="border-0 border-gray-300 text-gray-900 dark:text-white text-sm rounded-md block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option selected>Pilih Tugas</option>
 
             @foreach($list_tugas as $tugas)
@@ -26,7 +26,7 @@
     </td>
     <td class="whitespace-nowrap  px-6 py-2 text-center bg-blue-50">
 
-        <select wire:model="kategori" x-show="isEdit" class="border-0 border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <select wire:model="kategori" x-show="isEdit" class="border-0 border-gray-300 dark:text-white text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option selected>Kategori</option>
 
             @foreach($list_kategori as $kategori)
@@ -44,7 +44,7 @@
     </td>
     <td class="whitespace-nowrap  px-6 py-2 text-center bg-blue-50">
 
-        <select wire:model="status"  x-show="isEdit" class="border-0 border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <select wire:model="status"  x-show="isEdit" class="border-0 border-gray-300 dark:text-white text-gray-900 text-sm rounded-md block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option selected>Status</option>
             <option value="Selesai">Selesai</option>
             <option value="Progress">Progress</option>   
@@ -60,7 +60,7 @@
 
         <textarea wire:model="deskripsi"  
         x-show="isEdit"                
-        rows="1" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border-0 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Catatan..."></textarea>
+        rows="1" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg dark:text-white border-0 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Catatan..."></textarea>
 
     
         <div x-show="!isEdit" class="text-sm text-gray-900 ">
