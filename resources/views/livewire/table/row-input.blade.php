@@ -20,7 +20,7 @@
           </select>         
         
           <span x-show="!isEdit" class="text-slate-900">
-            {{ $nomor }}.  {{ $laporan->judul }} tes
+            {{ $nomor }}.  {{ $laporan->judul }}
           </span>     
 
     </td>
