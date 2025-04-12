@@ -36,7 +36,7 @@
       <div class="inline-block min-w-full lg:px-8">
         <div class="overflow-hidden">
           <table
-            class="min-w-full text-sm font-light text-surface dark:text-white">
+            class="min-w-full text-sm font-light text-surface">
             <thead
               class="border-b border-neutral-200 bg-primary-200 font-medium dark:border-white/10">
               <tr>
