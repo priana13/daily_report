@@ -2,17 +2,21 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
-use App\Models\User;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Models\User;
 use Filament\Tables;
+use Filament\Forms\Form;
+use Filament\Pages\Page;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\UserResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\UserResource\Pages\EditUser;
 use STS\FilamentImpersonate\Tables\Actions\Impersonate;
+use App\Filament\Resources\UserResource\Pages\CreateUser;
+use App\Filament\Resources\UserResource\RelationManagers;
 
 class UserResource extends Resource
 {
@@ -36,9 +40,33 @@ class UserResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('password')
+                    ->maxLength(255)
+                    ->password()->dehydrateStateUsing(
+                        static fn (null|string $state): null|string =>
+                        filled($state) ? Hash::make($state) : null,
+                    )->required(
+                        static fn (Page $livewire): string
+                        => $livewire instanceof CreateUser,
+                    )->dehydrated(
+                        static fn (null|string $state): bool =>
+                        filled($state),
+                    )->label(
+                        static fn (Page $livewire): string => ($livewire instanceof EditUser)
+                            ? "Password Baru" : "Password",
+                    )->same('conf_password')
+                    ,
+                Forms\Components\TextInput::make('conf_password')
                     ->password()
-                    ->required()
-                    ->maxLength(255),
+                    ->dehydrateStateUsing(
+                        static fn (null|string $state): null|string =>
+                        filled($state) ? Hash::make($state) : null,
+                    )->required(
+                        static fn (Page $livewire): string
+                        => $livewire instanceof CreateUser,
+                    )->dehydrated(
+                        static fn (null|string $state): bool =>
+                        filled($state),
+                    )->label('Konfirmasi Password')->dehydrated(false),
                 Forms\Components\Select::make('divisi_id')->relationship('divisi' , 'nama'),
                 Forms\Components\Select::make('level')->options([
                     "User" => "User",
@@ -55,6 +83,9 @@ class UserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
+                // Tables\Columns\TextColumn::make('password')
+                //     ->searchable(),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

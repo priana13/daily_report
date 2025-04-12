@@ -16,6 +16,9 @@ class ListUsers extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
+            Actions\Action::make("Divisi")->url(function() {
+                return route('filament.admin.resources.divisi.index');
+            })->icon('heroicon-o-rectangle-stack'),
         ];
     }
 }

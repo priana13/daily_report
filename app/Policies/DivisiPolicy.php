@@ -13,7 +13,7 @@ class DivisiPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->lebel == 'Manajer';
+        return $user->level == 'Manajer';
     }
 
     /**
@@ -21,7 +21,7 @@ class DivisiPolicy
      */
     public function view(User $user, Divisi $divisi): bool
     {
-        return $user->lebel == 'Manajer';
+        return $user->level == 'Manajer';
     }
 
     /**
@@ -29,7 +29,7 @@ class DivisiPolicy
      */
     public function create(User $user): bool
     {
-        return $user->lebel == 'Manajer';
+        return $user->level == 'Manajer';
     }
 
     /**
@@ -37,7 +37,7 @@ class DivisiPolicy
      */
     public function update(User $user, Divisi $divisi): bool
     {
-        return $user->lebel == 'Manajer';
+        return $user->level == 'Manajer';
     }
 
     /**
@@ -45,7 +45,7 @@ class DivisiPolicy
      */
     public function delete(User $user, Divisi $divisi): bool
     {
-        return $user->lebel == 'Manajer';
+        return $user->level == 'Manajer';
     }
 
     /**
@@ -53,7 +53,7 @@ class DivisiPolicy
      */
     public function restore(User $user, Divisi $divisi): bool
     {
-        return $user->lebel == 'Manajer';
+        return $user->level == 'Manajer';
     }
 
     /**
@@ -61,6 +61,6 @@ class DivisiPolicy
      */
     public function forceDelete(User $user, Divisi $divisi): bool
     {
-        return $user->lebel == 'Manajer';
+        return $user->level == 'Manajer';
     }
 }

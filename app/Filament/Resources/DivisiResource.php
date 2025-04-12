@@ -23,6 +23,8 @@ class DivisiResource extends Resource
     protected static ?string $slug = "divisi";
     protected static ?string $breadcrumb = "Divisi";
 
+    protected static bool $shouldRegisterNavigation = false; 
+
     public static function form(Form $form): Form
     {
         return $form
