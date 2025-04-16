@@ -10,6 +10,7 @@ export default {
         './resources/**/*.vue',
         "./node_modules/tw-elements/js/**/*.js"
     ],
+    darkMode: 'class',
     theme: {
         extend: {
             fontFamily: {

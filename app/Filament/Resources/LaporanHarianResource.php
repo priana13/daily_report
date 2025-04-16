@@ -90,7 +90,8 @@ class LaporanHarianResource extends Resource
                     'On Progress' => 'yellow',
                     'Selesai' => 'green',
                 ])->sortable(),
-                Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable()
+                ->toggleable(true),
             ])
             ->filters([
                 SelectFilter::make('kategori_id')->relationship('kategori', 'title')->label('Kategori')->searchable()->preload(),
