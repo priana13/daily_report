@@ -45,7 +45,7 @@
 
 
             if (isset( $data_laporan[$tgl] )){
-                $warna = 'bg-success-300';
+                $warna = 'bg-success-300 dark:bg-success-300';
                 $act = $data_laporan[$tgl];
 
             }else{
@@ -62,7 +62,7 @@
         <a
             href="/member/main-page?tanggal={{ $tanggal }}"
             target="_blank"
-            class="inline-block rounded {{ $hari_ini == 7 ? 'bg-danger-300' : $warna }} px-6 py-4 font-medium hover:shadow-lg uppercase leading-normal text-primary-700 dark:text-primary-900 transition duration-150 ease-in-out  focus:bg-primary-accent-200 focus:outline-none focus:ring-0 motion-reduce:transition-none dark:bg-primary-300 dark:focus:bg-primary-400 relative">
+            class="inline-block rounded {{ $hari_ini == 7 ? 'bg-danger-300 dark:bg-danger-300' : $warna }} px-6 py-4 font-medium hover:shadow-lg uppercase leading-normal text-primary-700 dark:text-primary-900 transition duration-150 ease-in-out  focus:bg-primary-accent-200 focus:outline-none focus:ring-0 motion-reduce:transition-none dark:focus:bg-primary-400 relative">
             <span class="absolute top-2 left-2 text-gray-400 dark:text-gray-600 text-xs">{{ $tgl }}</span>
             <span>{{ $act }}</span>
              
