@@ -11,6 +11,8 @@ Laporan Saben Dina kanggo nggampangake evaluasi tim kanthi cara sing luwih seder
 Sunda:
 Laporan Sapopoe pikeun mempermudah evaluasi tim ku cara anu langkung sederhana.
 
+![image](https://github.com/user-attachments/assets/94dfa9fd-78c0-41fd-9f94-94001f4689b0)
+
 
 # Cara Install 
 
