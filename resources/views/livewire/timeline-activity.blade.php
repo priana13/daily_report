@@ -1,9 +1,8 @@
 <div>
 
-    <h3
-  class="mb-6 ms-3 text-2xl font-bold text-neutral-700 dark:text-neutral-300">
-  Aktivitas Terbaru
-</h3>
+  <h3 class="mb-6 ms-3 text-2xl font-bold text-neutral-700 dark:text-neutral-300">
+    Aktivitas Terbaru
+  </h3>
 
 <ol class="border-s-2 border-info-100 ms-8">
   <!--First item-->
@@ -27,16 +26,11 @@
         </svg>
       </div>
       <div
-        class="mb-10 ms-6 block w-[60%] rounded-tr-lg p-6 dark:bg-neutral-700 dark:shadow-black/10">
-        <div class="mb-4">
+        class="mb-10 ms-0 block w-[60%] rounded-tr-lg px-6 pb-6 dark:bg-neutral-700 dark:shadow-black/10">
+        <div class="">          
           <a
             href="/member/main-page?tanggal={{ $row->tanggal }}"
-            class="text-sm text-info transition duration-150 ease-in-out hover:text-info-600 focus:text-info-600 active:text-info-700 "
-            >{{ $row->judul }}</a
-          > <br>
-          <a
-            href="/member/main-page?tanggal={{ $row->tanggal }}"
-            class="text-sm text-info transition duration-150 ease-in-out hover:text-info-600 focus:text-info-600 active:text-info-700"
+            class="text-normal mb-2 text-info transition duration-150 ease-in-out hover:text-info-600 focus:text-info-600 active:text-info-700 dark:border-info-300 dark:text-info-300 dark:hover:text-info-200 dark:focus:text-info-200 dark:active:text-info-200"
             >{{ date('d M Y' , strtotime($row->tanggal)) }}</a
           >
         </div>
